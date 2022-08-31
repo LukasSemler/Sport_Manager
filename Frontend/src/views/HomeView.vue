@@ -1,5 +1,10 @@
 <template>
-  <div><h1 class="text-center font-3xl">Home View</h1></div>
+  <HeroSection></HeroSection>
+  <br>  
+  <InfoComp></InfoComp>
 </template>
 
-<script setup></script>
+<script setup>
+import HeroSection from '../components/HeroSection.vue';
+import InfoComp from '../components/InfoComp.vue';
+</script>
