@@ -29,13 +29,13 @@
                       class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
 
-                    <!-- <p
-                      v-if="v$.vorname.$invalid"
+                    <p
+                      v-if="validator.vorname.$invalid"
                       class="mt-2 text-sm text-red-600"
                       id="email-error"
                     >
-                      {{ v$.vorname.$silentErrors[0].$message }}
-                    </p> -->
+                      {{ validator.vorname.$silentErrors[0].$message }}
+                    </p>
                   </div>
                 </div>
 
@@ -53,13 +53,13 @@
                       class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
 
-                    <!-- <p
-                      v-if="v$.nachname.$invalid"
+                    <p
+                      v-if="validator.nachname.$invalid"
                       class="mt-2 text-sm text-red-600"
                       id="email-error"
                     >
-                      {{ v$.nachname.$silentErrors[0].$message }}
-                    </p> -->
+                      {{ validator.nachname.$silentErrors[0].$message }}
+                    </p>
                   </div>
                 </div>
 
@@ -74,71 +74,13 @@
                       class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
 
-                    <!-- <p v-if="v$.email.$invalid" class="mt-2 text-sm text-red-600" id="email-error">
-                      {{ v$.email.$silentErrors[0].$message }}
-                    </p> -->
-                  </div>
-                </div>
-
-                <div class="sm:col-span-2">
-                  <label for="address" class="block text-sm font-medium text-gray-700"
-                    >Strasse + Hausnummer</label
-                  >
-                  <div class="mt-1">
-                    <input
-                      v-model="state.strasse_hnr"
-                      type="text"
-                      name="address"
-                      id="address"
-                      autocomplete="street-address"
-                      class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    />
-
-                    <!-- <p
-                      v-if="v$.strasse_hnr.$invalid"
+                    <p
+                      v-if="validator.email.$invalid"
                       class="mt-2 text-sm text-red-600"
                       id="email-error"
                     >
-                      {{ v$.strasse_hnr.$silentErrors[0].$message }}
-                    </p> -->
-                  </div>
-                </div>
-
-                <div>
-                  <label for="postal-code" class="block text-sm font-medium text-gray-700"
-                    >Postal code</label
-                  >
-                  <div class="mt-1">
-                    <input
-                      v-model="state.plz"
-                      type="text"
-                      name="postal-code"
-                      id="postal-code"
-                      autocomplete="postal-code"
-                      class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    />
-
-                    <!-- <p v-if="v$.plz.$invalid" class="mt-2 text-sm text-red-600" id="email-error">
-                      {{ v$.plz.$silentErrors[0].$message }}
-                    </p> -->
-                  </div>
-                </div>
-
-                <div>
-                  <label for="city" class="block text-sm font-medium text-gray-700">Stadt</label>
-                  <div class="mt-1">
-                    <input
-                      v-model="state.stadt"
-                      type="text"
-                      name="city"
-                      id="city"
-                      autocomplete="address-level2"
-                      class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    />
-
-                    <!-- <p v-if="v$.stadt.$invalid" class="mt-2 text-sm text-red-600" id="email-error">
-                      {{ v$.stadt.$silentErrors[0].$message }}
-                    </p> -->
+                      {{ validator.email.$silentErrors[0].$message }}
+                    </p>
                   </div>
                 </div>
 
@@ -155,13 +97,13 @@
                       class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
 
-                    <!-- <p
-                      v-if="v$.password.$invalid"
+                    <p
+                      v-if="validator.password.$invalid"
                       class="mt-2 text-sm text-red-600"
                       id="email-error"
                     >
-                      {{ v$.password.$silentErrors[0].$message }}
-                    </p> -->
+                      {{ validator.password.$silentErrors[0].$message }}
+                    </p>
                   </div>
                 </div>
 
@@ -178,18 +120,85 @@
                       class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
 
-                    <!-- <p
-                      v-if="v$.c_password.$invalid"
+                    <p
+                      v-if="validator.c_password.$invalid"
                       class="mt-2 text-sm text-red-600"
                       id="email-error"
                     >
-                      {{ v$.c_password.$silentErrors[0].$message }}
-                    </p> -->
+                      {{ validator.c_password.$silentErrors[0].$message }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="mt-4">
+                <RadioGroup v-model="spielerTrainerLists">
+                  <RadioGroupLabel class="text-base font-medium text-gray-900"
+                    >Spieler oder Trainer</RadioGroupLabel
+                  >
+
+                  <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4">
+                    <RadioGroupOption
+                      as="template"
+                      v-for="st in spieler_trainer"
+                      :key="st.id"
+                      :value="st"
+                      v-slot="{ checked, active }"
+                    >
+                      <div
+                        :class="[
+                          checked ? 'border-transparent' : 'border-gray-300',
+                          active ? 'border-indigo-500 ring-2 ring-indigo-500' : '',
+                          'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none',
+                        ]"
+                      >
+                        <span class="flex flex-1">
+                          <span class="flex flex-col">
+                            <RadioGroupLabel
+                              as="span"
+                              class="block text-sm font-medium text-gray-900"
+                              >{{ st.title }}</RadioGroupLabel
+                            >
+                            <RadioGroupDescription
+                              as="span"
+                              class="mt-1 flex items-center text-sm text-gray-500"
+                              >{{ st.description }}</RadioGroupDescription
+                            >
+                          </span>
+                        </span>
+                        <CheckCircleIcon
+                          :class="[!checked ? 'invisible' : '', 'h-5 w-5 text-indigo-600']"
+                          aria-hidden="true"
+                        />
+                        <span
+                          :class="[
+                            active ? 'border' : 'border-2',
+                            checked ? 'border-indigo-500' : 'border-transparent',
+                            'pointer-events-none absolute -inset-px rounded-lg',
+                          ]"
+                          aria-hidden="true"
+                        />
+                      </div>
+                    </RadioGroupOption>
+                  </div>
+                </RadioGroup>
+              </div>
+              <div class="rounded-md bg-blue-50 p-4 mt-4">
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <InformationCircleIcon class="h-5 w-5 text-blue-400" aria-hidden="true" />
+                  </div>
+                  <div class="ml-3 flex-1 md:flex md:justify-between">
+                    <p class="text-sm text-blue-700">
+                      Diesen Punkt kannst du nachher nicht mehr ändern
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <br />
+
           <div class="flex items-center justify-between">
             <div class="text-sm">
               <a
@@ -203,6 +212,7 @@
 
           <div>
             <button
+              @click="register"
               class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Register
@@ -216,19 +226,83 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-import { reactive, ref } from 'vue';
+import { reactive, ref, computed } from 'vue';
+
+// Imports für Tailwind
+import {
+  RadioGroup,
+  RadioGroupDescription,
+  RadioGroupLabel,
+  RadioGroupOption,
+} from '@headlessui/vue';
+import { CheckCircleIcon } from '@heroicons/vue/20/solid';
+import { InformationCircleIcon } from '@heroicons/vue/20/solid';
+
+// Imports für vuelidate
+import useValidate from '@vuelidate/core';
+import { required, email, numeric, minLength, sameAs } from '@vuelidate/validators';
+
+import axios from 'axios';
+
+// Variable für die Radio Buttons
+const spieler_trainer = [
+  {
+    id: 1,
+    title: 'Spieler',
+    description:
+      'Als Spieler kannst du deinem Mannschaften beitreten und bekommst alle wichtigen Infos von deinen Trainern',
+  },
+  {
+    id: 2,
+    title: 'Trainer',
+    description: 'Erstelle Mannschaften und verwalte diese einfach',
+  },
+];
+
+// Liste für die Radio Buttons
+const spielerTrainerLists = ref(spieler_trainer[0]);
 
 const router = useRouter();
-let showError = ref(false);
+
 // Variablen for input erstellen
 const state = reactive({
   vorname: '',
   nachname: '',
   email: '',
-  strasse_hnr: '',
-  stadt: '',
-  plz: '',
   password: '',
   c_password: '',
 });
+
+// Rules for vuelidate
+const rules = computed(() => {
+  return {
+    vorname: { required },
+    nachname: { required },
+    email: { required, email },
+    password: { required, minLength: minLength(6) },
+    c_password: { required, minLength: minLength(6), sameAs: sameAs(state.password) },
+  };
+});
+
+const validator = useValidate(rules, state);
+
+async function register(e) {
+  e.preventDefault();
+
+  console.log(validator);
+  if (validator.value.$silentErrors.length == 0) {
+    // Daten an den Server schicken
+    const result = await axios.post('/register', {
+      vorname: state.vorname,
+      nachname: state.nachname,
+      email: state.email,
+      password: state.password,
+      type: spielerTrainerLists.value.title,
+    });
+
+    console.log(result);
+  } else {
+    console.log('fehler');
+  }
+}
 </script>
