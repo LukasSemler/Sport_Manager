@@ -19,6 +19,7 @@
     "npm": "^8.18.0",
     "pinia": "^2.0.13",
     "vue": "^3.2.29",
+    "vue-cal": "^4.8.0",
     "vue-router": "^4.0.13"
   },
   "devDependencies": {

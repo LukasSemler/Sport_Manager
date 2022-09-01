@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
+import LandingPageView from '../views/LandingPageView.vue';
 import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import NotFoundView from '../views/NotFoundView.vue';
 import ContactView from '../views/ContactView.vue';
+import AboutUsView from '../views/AboutUsView.vue';
+import HomeView from '../views/HomeView.vue';
 
 // import { PiniaStore } from '../Store/Store.js';
 
@@ -12,8 +14,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: HomeView,
+      name: 'LandingPage',
+      component: LandingPageView,
     },
     {
       path: '/login',
@@ -26,9 +28,20 @@ const router = createRouter({
       component: RegisterView,
     },
     {
+      path: '/aboutus',
+      name: 'AboutUs',
+      component: AboutUsView,
+    },
+    {
       path: '/contact',
       name: 'Conatct',
       component: ContactView,
+    },
+
+    {
+      path: '/home',
+      name: 'Home',
+      component: HomeView,
     },
 
     { path: '/:pathmatch(.*)*', name: 'not-found', component: NotFoundView },

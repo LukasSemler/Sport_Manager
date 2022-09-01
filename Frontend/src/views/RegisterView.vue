@@ -210,7 +210,13 @@
             </div>
           </div>
 
-          <div>
+          <div class="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
+            <button
+              @click="router.push('/')"
+              class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Abbrechen
+            </button>
             <button
               @click="register"
               class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -240,7 +246,7 @@ import { InformationCircleIcon } from '@heroicons/vue/20/solid';
 
 // Imports für vuelidate
 import useValidate from '@vuelidate/core';
-import { required, email, numeric, minLength, sameAs } from '@vuelidate/validators';
+import { required, email, minLength, sameAs } from '@vuelidate/validators';
 
 import axios from 'axios';
 

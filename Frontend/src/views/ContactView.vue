@@ -1,4 +1,7 @@
 <template>
+  <!-- Navbar -->
+  <NavbarComp></NavbarComp>
+
   <!-- Success Ding anzeigen -->
   <!-- Global notification live region, render this permanently at the end of the document -->
   <div
@@ -266,7 +269,10 @@
                   </dd>
                   <dt><span class="sr-only">Email</span></dt>
                   <dd class="flex text-base text-indigo-50">
-                    <EnvelopeIcon class="flex-shrink-0 w-6 h-6 text-indigo-200" aria-hidden="true" />
+                    <EnvelopeIcon
+                      class="flex-shrink-0 w-6 h-6 text-indigo-200"
+                      aria-hidden="true"
+                    />
                     <span class="ml-3">support@workcation.com</span>
                   </dd>
                 </dl>
@@ -487,32 +493,13 @@
           </div>
         </div>
       </section>
-
-      <!-- Contact grid -->
-      <section aria-labelledby="offices-heading">
-        <div class="max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
-          <h2 id="offices-heading" class="text-3xl font-extrabold text-warm-gray-900">
-            Our offices
-          </h2>
-          <p class="mt-6 text-lg text-warm-gray-500 max-w-3xl">
-            Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non.
-            Cras aliquet purus dui laoreet diam sed lacus, fames.
-          </p>
-          <div class="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            <div v-for="office in offices" :key="office.id">
-              <h3 class="text-lg font-medium text-warm-gray-900">{{ office.city }}</h3>
-              <p class="mt-2 text-base text-warm-gray-500">
-                <span v-for="line in office.address" :key="line" class="block">{{ line }}</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   </div>
 </template>
 
 <script setup>
+import NavbarComp from '../components/NavbarComp.vue';
+
 import { ref } from 'vue';
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/vue/24/outline';
 import { XMarkIcon } from '@heroicons/vue/20/solid';
@@ -522,6 +509,7 @@ import { computed, reactive } from 'vue';
 import useValidate from '@vuelidate/core';
 import { required, email, maxLength } from '@vuelidate/validators';
 import axios from 'axios';
+
 // Offices Anzeigen
 const offices = [
   { id: 1, city: 'Los Angeles', address: ['4556 Brendan Ferry', 'Los Angeles, CA 90210'] },
