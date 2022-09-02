@@ -7,6 +7,10 @@ import ContactView from '../views/ContactView.vue';
 import AboutUsView from '../views/AboutUsView.vue';
 import HomeView from '../views/HomeView.vue';
 
+// Subviews
+import TrainerHome from '../views/SubViews/Trainer/TrainerHome.vue';
+import TrainerTeams from '../views/SubViews/Trainer/TrainerKarten.vue';
+
 // import { PiniaStore } from '../Store/Store.js';
 
 const router = createRouter({
@@ -39,9 +43,13 @@ const router = createRouter({
     },
 
     {
-      path: '/home',
+      path: '/homeTrainer',
       name: 'Home',
       component: HomeView,
+      children: [
+        { path: '', component: TrainerHome },
+        { path: 'teams', component: TrainerTeams },
+      ],
     },
 
     { path: '/:pathmatch(.*)*', name: 'not-found', component: NotFoundView },
