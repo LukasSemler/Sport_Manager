@@ -8,6 +8,7 @@
     </div>
     <div class="mt-4 flex sm:mt-0 sm:ml-4">
       <button
+        @click="router.push('/addTeam')"
         type="button"
         class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
@@ -39,7 +40,7 @@
               <a
                 class="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
               >
-                <span class="ml-3">Email</span>
+                <span class="ml-3">Details</span>
               </a>
             </div>
           </div>
@@ -55,5 +56,8 @@ import { PlusIcon } from '@heroicons/vue/20/solid';
 // Store impotieren
 import { PiniaStore } from '../../../Store/Store';
 
+import { useRouter } from 'vue-router';
+
 const store = PiniaStore();
+const router = useRouter();
 </script>

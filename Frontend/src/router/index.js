@@ -6,6 +6,7 @@ import NotFoundView from '../views/NotFoundView.vue';
 import ContactView from '../views/ContactView.vue';
 import AboutUsView from '../views/AboutUsView.vue';
 import HomeView from '../views/HomeView.vue';
+import TeamErstellenView from '../views/TeamErstellenView.vue';
 
 // Subviews
 import TrainerHome from '../views/SubViews/Trainer/TrainerHome.vue';
@@ -41,7 +42,6 @@ const router = createRouter({
       name: 'Conatct',
       component: ContactView,
     },
-
     {
       path: '/homeTrainer',
       name: 'Home',
@@ -50,6 +50,11 @@ const router = createRouter({
         { path: '', component: TrainerHome },
         { path: 'teams', component: TrainerTeams },
       ],
+    },
+    {
+      path: '/addTeam',
+      name: 'addTeam',
+      component: TeamErstellenView,
     },
 
     { path: '/:pathmatch(.*)*', name: 'not-found', component: NotFoundView },
