@@ -3,7 +3,7 @@
     style="height: 500px"
     class="vuecal--blue-theme"
     :events="events"
-    :time-from="10 * 70"
+    :time-from="12 * 60"
   ></vue-cal>
 </template>
 
@@ -33,7 +33,7 @@ let events = [
 
 <style>
 /* Green-theme. */
-/* .vuecal__menu,
+.vuecal__menu,
 .vuecal__cell-events-count {
   background-color: #6771fc;
 }
@@ -49,15 +49,15 @@ let events = [
 }
 .vuecal__cell--selected:before {
   border-color: rgba(66, 185, 131, 0.5);
-} */
+}
 
 /* Cells and buttons get highlighted when an event is dragged over it. */
-/* .vuecal__cell--highlighted:not(.vuecal__cell--has-splits),
+.vuecal__cell--highlighted:not(.vuecal__cell--has-splits),
 .vuecal__cell-split--highlighted {
   background-color: rgba(195, 255, 225, 0.5);
 }
 .vuecal__arrow.vuecal__arrow--highlighted,
 .vuecal__view-btn.vuecal__view-btn--highlighted {
   background-color: rgba(0, 81, 255, 0.25);
-} */
+}
 </style>
