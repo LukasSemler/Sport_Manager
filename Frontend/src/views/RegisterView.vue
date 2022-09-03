@@ -195,6 +195,33 @@
                   </div>
                 </div>
               </div>
+              <br />
+              <br />
+              <RadioGroup v-model="selectedAvatar">
+                <RadioGroupLabel class="text-base font-medium text-gray-900"
+                  >Wählen Sie einen Avatar</RadioGroupLabel
+                >
+                <div class="mt-4 flex items-center space-x-3">
+                  <RadioGroupOption
+                    as="template"
+                    v-for="avatar in avatare"
+                    :key="avatar.name"
+                    :value="avatar"
+                    v-slot="{ active, checked }"
+                  >
+                    <div
+                      :class="[
+                        avatar.selectedColor,
+                        active && checked ? 'ring ring-offset-1' : '',
+                        !active && checked ? 'ring-2' : '',
+                        '-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none',
+                      ]"
+                    >
+                      <img :src="avatar.path" :alt="avatar.name" class="h-14 w-14" />
+                    </div>
+                  </RadioGroupOption>
+                </div>
+              </RadioGroup>
             </div>
           </div>
           <br />
@@ -228,6 +255,7 @@
       </div>
     </div>
   </div>
+  {{ selectedAvatar }}
 </template>
 
 <script setup>
@@ -264,6 +292,20 @@ const spieler_trainer = [
     description: 'Erstelle Mannschaften und verwalte diese einfach',
   },
 ];
+
+const avatare = [
+  { name: 'Avatar1', path: '/Avatare/Avatar1.png', selectedColor: 'ring-indigo-500' },
+  { name: 'Avatar2', path: '/Avatare/Avatar2.png', selectedColor: 'ring-indigo-500' },
+  { name: 'Avatar3', path: '/Avatare/Avatar3.png', selectedColor: 'ring-indigo-500' },
+  { name: 'Avatar4', path: '/Avatare/Avatar4.png', selectedColor: 'ring-indigo-500' },
+  { name: 'Avatar5', path: '/Avatare/Avatar5.png', selectedColor: 'ring-indigo-500' },
+  { name: 'Avatar6', path: '/Avatare/Avatar6.png', selectedColor: 'ring-indigo-500' },
+  { name: 'Avatar7', path: '/Avatare/Avatar7.png', selectedColor: 'ring-indigo-500' },
+  { name: 'Avatar8', path: '/Avatare/Avatar8.png', selectedColor: 'ring-indigo-500' },
+  { name: 'Avatar9', path: '/Avatare/Avatar9.png', selectedColor: 'ring-indigo-500' },
+];
+
+const selectedAvatar = ref(avatare[0]);
 
 // Liste für die Radio Buttons
 const spielerTrainerLists = ref(spieler_trainer[0]);
@@ -304,6 +346,7 @@ async function register(e) {
       email: state.email,
       password: state.password,
       type: spielerTrainerLists.value.title,
+      avatar_path: selectedAvatar.value.path,
     });
 
     console.log(result);
